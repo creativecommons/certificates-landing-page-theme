@@ -301,4 +301,13 @@ add_filter( 'gform_require_login_pre_download', '__return_true' );
 // Akismet is too eager to mark these as spam - RobM
 add_filter( 'gform_akismet_enabled_17' , '__return_false' );
 
-?>
+add_action( 'body_class', 'my_custom_class');
+function my_custom_class( $classes ) {
+
+    // Remove 'home' class
+        if (in_array('home', $classes)) {
+	        unset( $classes[array_search('home', $classes)] );
+		    }
+
+    return $classes;
+    }
